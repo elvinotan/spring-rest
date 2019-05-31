@@ -47,41 +47,49 @@ public class UserServiceImpl extends DaoImpl implements UserService{
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteUser(Long id) throws Exception {
 		userRepo.deleteById(id);
 	}
 	
 	@Override
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public List<UserBean> getUsers(String name, String email) throws Exception {
 		return userRepo.findUserCriteria(name, email);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public MenuBean getMenu(Long id) throws Exception {
 		return menuRepo.findById(id).orElse(null);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public MenuBean saveMenu(MenuBean bean) throws Exception {
 		return menuRepo.save(bean);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteMenu(Long id) throws Exception {
 		menuRepo.deleteById(id);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public RoleBean getRole(Long id) throws Exception {
 		return roleRepo.findById(id).orElse(null);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public RoleBean saveRole(RoleBean bean) throws Exception {
 		return roleRepo.save(bean);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteRole(Long id) throws Exception {
 		roleRepo.deleteById(id);
 	}
