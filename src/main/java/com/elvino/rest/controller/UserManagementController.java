@@ -21,28 +21,28 @@ public class UserManagementController extends ServiceController{
 
 	// User Module
 	
-	@GetMapping(name="/user/{id}")
+	@GetMapping("/user/{id}")
 	public Result getUser(@PathVariable("id") Long id) {
 		try {
 			return Result.success(userService.getUser(id));
 		}catch(Exception e) { return Result.error("Gagal ambil data", e.getMessage()); }
 	}
 	
-	@PostMapping(name="/user")
+	@PostMapping("/user")
 	public Result saveUser(@RequestBody UserBean bean) {
 		try {
 			return Result.success(userService.saveUser(bean), 200, "Simpan Data Berhasil", "Success to save data");
 		}catch(Exception e) { return Result.error("Gagal simpan data", e.getMessage()); }
 	}
 	
-	@PutMapping(name="/user/{id}")
+	@PutMapping("/user/{id}")
 	public Result updateUser(@PathVariable("id") Long id, @RequestBody UserBean bean) {
 		try {
 			return Result.success(userService.saveUser(bean), 200, "Ubah Data Berhasil", "Success to update data");
 		}catch(Exception e) { return Result.error("Gagal ubah data", e.getMessage()); }
 	}
 	
-	@DeleteMapping(name="/user/{id}")
+	@DeleteMapping("/user/{id}")
 	public Result deleteUser(@PathVariable("id") Long id) {
 		try {
 			userService.deleteUser(id);
@@ -59,28 +59,28 @@ public class UserManagementController extends ServiceController{
 	
 	
 	// Module Menu
-	@GetMapping(name="/menu/{id}")
+	@GetMapping("/menu/{id}")
 	public Result getMenu(@PathVariable("id") Long id) {
 		try {
 			return Result.success(userService.getMenu(id));
 		}catch(Exception e) { return Result.error("Gagal ambil data", e.getMessage()); }
 	}
 	
-	@PostMapping(name="/menu")
+	@PostMapping("/menu")
 	public Result saveMenu(@RequestBody MenuBean bean) {
 		try {
 			return Result.success(userService.saveMenu(bean), 200, "Simpan Data Berhasil", "Success to save data");
 		}catch(Exception e) { return Result.error("Gagal simpan data", e.getMessage()); }
 	}
 	
-	@PutMapping(name="/menu/{id}")
+	@PutMapping("/menu/{id}")
 	public Result updateMenu(@PathVariable("id") Long id, @RequestBody MenuBean bean) {
 		try {
 			return Result.success(userService.saveMenu(bean), 200, "Ubah Data Berhasil", "Success to update data");
 		}catch(Exception e) { return Result.error("Gagal ubah data", e.getMessage()); }
 	}
 	
-	@DeleteMapping(name="/menu/{id}")
+	@DeleteMapping("/menu/{id}")
 	public Result deleteMenu(@PathVariable("id") Long id) {
 		try {
 			userService.deleteMenu(id);
@@ -90,28 +90,28 @@ public class UserManagementController extends ServiceController{
 	
 	
 	// Module Role
-	@GetMapping(name="/role/{id}")
+	@GetMapping("/role/{id}")
 	public Result getRole(@PathVariable("id") Long id) {
 		try {
 			return Result.success(userService.getRole(id));
 		}catch(Exception e) { return Result.error("Gagal ambil data", e.getMessage()); }
 	}
 	
-	@PostMapping(name="/role")
+	@PostMapping("/role")
 	public Result saveRole(@RequestBody RoleBean bean) {
 		try {
 			return Result.success(userService.saveRole(bean), 200, "Simpan Data Berhasil", "Success to save data");
 		}catch(Exception e) { return Result.error("Gagal simpan data", e.getMessage()); }
 	}
 	
-	@PutMapping(name="/role/{id}")
+	@PutMapping("/role/{id}")
 	public Result updateRole(@PathVariable("id") Long id, @RequestBody RoleBean bean) {
 		try {
 			return Result.success(userService.saveRole(bean), 200, "Ubah Data Berhasil", "Success to update data");
 		}catch(Exception e) { return Result.error("Gagal ubah data", e.getMessage()); }
 	}
 	
-	@DeleteMapping(name="/role/{id}")
+	@DeleteMapping("/role/{id}")
 	public Result deleteRole(@PathVariable("id") Long id) {
 		try {
 			userService.deleteRole(id);

@@ -20,7 +20,7 @@ public class MenuBean {
 	private String code;
 	private String name;
 	private AuditTrail auditTrail;
-	private List<MenuBean> menus = new ArrayList<MenuBean>();
+	private List<RoleBean> roles = new ArrayList<RoleBean>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,7 +45,7 @@ public class MenuBean {
 	public void setAuditTrail(AuditTrail auditTrail) { this.auditTrail = auditTrail; }
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "menus")
-	public List<MenuBean> getMenus() { return menus; }
-	public void setMenus(List<MenuBean> menus) { this.menus = menus; }
+	public List<RoleBean> getRoles() { return roles; }
+	public void setRoles(List<RoleBean> roles) { this.roles = roles; }
 
 }
