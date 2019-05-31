@@ -1,6 +1,5 @@
 package com.elvino.rest.controller;
 
-import org.apache.catalina.mbeans.RoleMBean;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
