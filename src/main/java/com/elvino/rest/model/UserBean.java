@@ -3,6 +3,7 @@ package com.elvino.rest.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +24,7 @@ public class UserBean {
 	private String email;
 	private String password;
 	private AuditTrail auditTrail;
+	private List<RelativeBean> relatives = new ArrayList<RelativeBean>();
 	private List<RoleBean> roles = new ArrayList<RoleBean>();
 	
 	@Id
@@ -48,6 +52,11 @@ public class UserBean {
 	@Embedded
 	public AuditTrail getAuditTrail() { return auditTrail; }
 	public void setAuditTrail(AuditTrail auditTrail) { this.auditTrail = auditTrail; }
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval=true)
+	@OrderBy("name asc")
+	public List<RelativeBean> getRelatives() { return relatives; }
+	public void setRelatives(List<RelativeBean> relatives) { this.relatives = relatives; }
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	public List<RoleBean> getRoles() { return roles; }
