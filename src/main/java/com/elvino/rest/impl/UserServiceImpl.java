@@ -1,5 +1,7 @@
 package com.elvino.rest.impl;
 
+import java.util.List;
+
 import com.elvino.rest.model.UserBean;
 import com.elvino.rest.service.UserService;
 
@@ -19,5 +21,9 @@ public class UserServiceImpl extends DaoImpl implements UserService{
 	public void deleteUser(Long id) throws Exception {
 		userRepo.deleteById(id);
 	}
-
+	
+	@Override
+	public List<UserBean> getUsers(String name, String email) throws Exception {
+		return userRepo.findUserCriteria(name, email);
+	}
 }

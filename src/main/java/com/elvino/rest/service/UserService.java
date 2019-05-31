@@ -1,5 +1,7 @@
 package com.elvino.rest.service;
 
+import java.util.List;
+
 import com.elvino.rest.model.UserBean;
 
 public interface UserService {
@@ -11,4 +13,6 @@ public interface UserService {
 	public UserBean saveUser(UserBean userBean) throws Exception;
 	
 	public void deleteUser(Long id) throws Exception;
+	
+	public List<UserBean> getUsers(String name, String email) throws Exception;
 }

@@ -17,8 +17,8 @@ import javax.persistence.Table;
 @Table(name="gn_user")
 public class UserBean {
 	private Long id;
-	private String code;
 	private String name;
+	private String email;
 	private String password;
 	private AuditTrail auditTrail;
 	private List<RoleBean> roles = new ArrayList<RoleBean>();
@@ -28,9 +28,9 @@ public class UserBean {
 	public Long getId() { return id; }
 	public void setId(Long id) { this.id = id; }
 	
-	@Column(name="code")
-	public String getCode() { return code; }
-	public void setCode(String code) { this.code = code; }
+	@Column(name="email")
+	public String getEmail() { return email; }
+	public void setEmail(String email) { this.email = email; }
 	
 	@Column(name="name")
 	public String getName() { return name; }
