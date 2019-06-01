@@ -3,6 +3,7 @@ package com.elvino.rest.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import com.elvino.rest.model.RoleBean;
 import com.elvino.rest.model.UserBean;
 import com.elvino.rest.service.UserService;
 
+@Service("userService")
 public class UserServiceImpl extends DaoImpl implements UserService{
 
 	@Override
