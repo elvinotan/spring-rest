@@ -206,6 +206,51 @@ a. GET : Untuk mengambil data @GetMapping("/user/{id}")</br>
 b. POST : Untuk menyimpan data @PostMapping("/user")</br>
 c. DEL : Untuk menghapus data @DelMapping("/user/{id}")</br>
 d. PUT : Untuk mengubah data @PutMapping("/user")</br>
+```
+@RestController
+@RequestMapping("/usermanagement")
+public class UserManagementController extends ServiceController{
+
+	// User Module
+	
+	@GetMapping("/user/{id}")
+	public Result getUser(@PathVariable("id") Long id) {
+		try {
+			return Result.success(userService.getUser(id));
+		}catch(Exception e) { return Result.error("Gagal ambil data", e.getMessage()); }
+	}
+	
+	@PostMapping("/user")
+	public Result saveUser(@RequestBody UserBean bean) {
+		try {
+			return Result.success(userService.saveUser(bean), 200, "Simpan Data Berhasil", "Success to save data");
+		}catch(Exception e) { return Result.error("Gagal simpan data", e.getMessage()); }
+	}
+	
+	@PutMapping("/user/{id}")
+	public Result updateUser(@PathVariable("id") Long id, @RequestBody UserBean bean) {
+		try {
+			return Result.success(userService.saveUser(bean), 200, "Ubah Data Berhasil", "Success to update data");
+		}catch(Exception e) { return Result.error("Gagal ubah data", e.getMessage()); }
+	}
+	
+	@DeleteMapping("/user/{id}")
+	public Result deleteUser(@PathVariable("id") Long id) {
+		try {
+			userService.deleteUser(id);
+			return Result.success("Hapus Data Berhasil", "Success to delete data");
+		}catch(Exception e) { return Result.error("Gagal hapus data", e.getMessage()); }
+	}
+	
+	@GetMapping("/users")
+	public Result getUsers(@RequestParam("name") String name, @RequestParam("email") String email){
+		try {
+			return Result.success(userService.getUsers(name, email));
+		}catch(Exception e) { return Result.error("Gagal ambil data", e.getMessage()); }
+	}
+```
+
+# Note
 
 Untuk mengirim data dari sisi client ke server, selain alamat url kita juga dapat memberikan :</br>
 a. Path url => http://localhost:8080/user/45</br>
