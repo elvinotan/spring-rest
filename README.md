@@ -1,8 +1,8 @@
 # Spring-Rest
 Pada bagian ini kita akan mencoba membuat suatu User Management Module yang terdiri dari</br> 
-a. User-Relative = One To Many
-b. Role
-c. Menu
+a. User-Relative = One To Many</br>
+b. Role</br>
+c. Menu</br>
 Hubungan antara User dan Role, serta Menu dan Role memiliki hubungan ManyToMany. 
 kemudian kita akan membuat persistenece management yang kemudian fungsionalnya akan kita expose dengan mengunakan rest technology.
 
