@@ -1,8 +1,8 @@
 # Spring-Rest
 Pada bagian ini kita akan mencoba membuat suatu User Management Module yang terdiri dari : </br> 
-	a. User-Relative = One To Many</br>
-	b. Role</br>
-	c. Menu</br>
+a. User-Relative = One To Many</br>
+b. Role</br>
+c. Menu</br>
 Hubungan antara User dan Role, serta Menu dan Role memiliki hubungan ManyToMany. 
 Kemudian kita akan membuat persistenece management yang kemudian fungsionalnya akan kita expose dengan mengunakan rest technology.
 
@@ -61,6 +61,15 @@ public class AuditTrail {
 }
 ```
 5. Untuk memudahkan oprasional database CRUD, kita menggunakna framework spring data, yang akan di mapping ke masing-masing model
+Spring data memiliki fiture antara lain :</br>
+a. Anotation @Repository</br>
+b. findBy ....</br>
+c  @Param untuk inject value pada query line, dengan tanda :</br>
+d. Auto build in insert, update dan delete default</br>
+e. Hql    : @Query(value="select a  from UserBean a", nativeQuery=false)</br>
+f. Native : @Query(value="select a.* from gn_user a", nativeQuery=true)</br>
+g. Gunakan @Modifying untuk delete dan update secara manual (bukan fungsi build in)</br>
+
 ```
 @Repository
 public interface UserRepository extends JpaRepository<UserBean, Long>{
@@ -71,14 +80,6 @@ public interface UserRepository extends JpaRepository<UserBean, Long>{
 	public List<UserBean> findUserCriteria(@Param("name") String name, @Param("email") String email);
 }
 ```
-Spring data memiliki fiture antara lain :</br>
-a. Anotation @Repository</br>
-b. findBy ....</br>
-c  @Param untuk inject value pada query line, dengan tanda :</br>
-d. Auto build in insert, update dan delete default</br>
-e. Hql    : @Query(value="select a  from UserBean a", nativeQuery=false)</br>
-f. Native : @Query(value="select a.* from gn_user a", nativeQuery=true)</br>
-g. Gunakan @Modifying untuk delete dan update secara manual (bukan fungsi build in)</br>
 
 6. Buat Class Service dan Service Implementation dan terapkan Transaction Propagation
 Terapkan @Service untuk menandakan ini merupakn service (@Service = Producer)
