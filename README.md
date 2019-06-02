@@ -95,12 +95,12 @@ Propagation.MANDATORY</br>
 a. Buat Suatu Class dan pasang anotation @RestController. 
 b. Pasang @RequestMapping untuk url mapping. @RequestMapping dapat di pasang di class maupun method
 c. Untuk rest terdapat beberapa macam HttpMethod antara lain POST, GET, DEL, PUT dan masing banyak lagi tapi, yang umumnya di pakai
-adalah yang telah di sebautkan di atas
-Fungsi dan ciri khas HttpMethod :
-a. GET : Untuk mengambil data @GetMapping("/user/{id}")
-b. POST : Untuk menyimpan data @PostMapping("/user")
-c. DEL : Untuk menghapus data @DelMapping("/user/{id}")
-d. PUT : Untuk mengubah data @PutMapping("/user")
+adalah yang telah di sebautkan di atas</br>
+Fungsi dan ciri khas HttpMethod :</br>
+a. GET : Untuk mengambil data @GetMapping("/user/{id}")</br>
+b. POST : Untuk menyimpan data @PostMapping("/user")</br>
+c. DEL : Untuk menghapus data @DelMapping("/user/{id}")</br>
+d. PUT : Untuk mengubah data @PutMapping("/user")</br>
 
 Untuk mengirim data dari sisi client ke server, selain alamat url kita juga dapat memberikan :
 a. Path url => http://localhost:8080/user/45
