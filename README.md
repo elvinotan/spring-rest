@@ -148,6 +148,53 @@ Propagation.REQUIRED</br>
 Propagation.REQUIRES_NEW</br>
 Propagation.NEVER</br>
 Propagation.MANDATORY</br>
+```
+@Service("userService")
+public class UserServiceImpl extends DaoImpl implements UserService{
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS)
+	public UserBean getUser(Long id) throws Exception {
+		return userRepo.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public UserBean saveUser(UserBean bean) throws Exception {
+		AuditTrail auditTrail = new AuditTrail();
+		if (bean.getId() == null) {
+			auditTrail.setCreatedBy("system");
+			auditTrail.setCreatedDate(new Date());
+		}else {
+			auditTrail.setModifiedBy("system");
+			auditTrail.setModifiedDate(new Date());
+		}
+		bean.setAuditTrail(auditTrail);
+		
+		for (RelativeBean relative : bean.getRelatives()) {
+			relative.setAuditTrail(bean.getAuditTrail());
+		}
+		
+		bean = userRepo.save(bean);
+		for (RelativeBean relative : bean.getRelatives()) {
+			relative.setUser(new UserBean(bean.getId()));
+		}
+		
+		return bean;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void deleteUser(Long id) throws Exception {
+		userRepo.deleteById(id);
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS)
+	public List<UserBean> getUsers(String name, String email) throws Exception {
+		return userRepo.findUserCriteria(name, email);
+	}
+```
 
 7. Agar fungsi kita dapat di access dari luar, kita perlu membuat suatu framework Rest sebagai endpoint. 
 a. Buat Suatu Class dan pasang anotation @RestController. 
