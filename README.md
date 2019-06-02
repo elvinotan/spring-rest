@@ -22,6 +22,64 @@ H2</br>
 1. Buat Spring Boot application dan tambahkan dependencies sesuai di atas.
 2. Buat package berdasarkan tujuan masing masing, contoh : model, repository, service, impl, controller
 3. Buat persistence model, pada kasus ini membuat 3 jenis model yaitu User, Role, Menu dan Relative
+```
+@Entity
+@Table(name="gn_user")
+public class UserBean {
+	private Long id;
+	private String name;
+	private String email;
+	private String password;
+	private AuditTrail auditTrail;
+	private List<RelativeBean> relatives = new ArrayList<RelativeBean>();
+	private List<RoleBean> roles = new ArrayList<RoleBean>();
+	
+	public UserBean() {
+	}
+	
+	public UserBean(Long id) {
+		this.id = id;
+	}	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() { return id; }
+	public void setId(Long id) { this.id = id; }
+	
+	@NotNull
+	@Column(name="email")
+	public String getEmail() { return email; }
+	public void setEmail(String email) { this.email = email; }
+	
+	@NotNull
+	@Column(name="name")
+	public String getName() { return name; }
+	public void setName(String name) { this.name = name; }
+	
+	@NotNull
+	@Column(name="password")
+	public String getPassword() { return password; }
+	public void setPassword(String password) { this.password = password; }
+	
+//	Bisa juga di Object AuditTrail tidak mapping ke colum, tapi saat di implementasinya di mapping
+//	@AttributeOverrides(value = {
+//			@AttributeOverride(name = "addressLine1", column = @Column(name = "house_number")),
+//	        @AttributeOverride(name = "addressLine2", column = @Column(name = "street"))
+//	})
+	@Embedded
+	public AuditTrail getAuditTrail() { return auditTrail; }
+	public void setAuditTrail(AuditTrail auditTrail) { this.auditTrail = auditTrail; }
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval=true)
+	@OrderBy("name asc")
+	public List<RelativeBean> getRelatives() { return relatives; }
+	public void setRelatives(List<RelativeBean> relatives) { this.relatives = relatives; }
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	public List<RoleBean> getRoles() { return roles; }
+	public void setRoles(List<RoleBean> roles) { this.roles = roles; }
+}
+```
 4. Untuk masing masing model akan memiliki signature method yang sama yaitu createdBy, createdDate, modifiedBy, modifiedDate. Untuk memenuhi
 kebutuhan ini kita akan membuat suatu @Embeddable model yang akan di pasangkan ke masing masing model
 ```
