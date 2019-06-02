@@ -84,7 +84,6 @@ public interface UserRepository extends JpaRepository<UserBean, Long>{
 6. Buat Class Service dan Service Implementation dan terapkan Transaction Propagation
 Terapkan @Service untuk menandakan ini merupakn service (@Service = Producer)
 Terapkan @Autowire untuk meng-inject object (@Autowire = Consumer)
-
 Beberapa Transactional Umum yang di support oleh Spring : </br>
 Propagation.SUPPORTS</br>
 Propagation.REQUIRED</br>
