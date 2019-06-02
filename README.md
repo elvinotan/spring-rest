@@ -1,10 +1,10 @@
 # Spring-Rest
-Pada bagian ini kita akan mencoba membuat suatu User Management Module yang terdiri dari</br> 
+Pada bagian ini kita akan mencoba membuat suatu User Management Module yang terdiri dari : </br> 
 a. User-Relative = One To Many</br>
 b. Role</br>
 c. Menu</br>
 Hubungan antara User dan Role, serta Menu dan Role memiliki hubungan ManyToMany. 
-kemudian kita akan membuat persistenece management yang kemudian fungsionalnya akan kita expose dengan mengunakan rest technology.
+Kemudian kita akan membuat persistenece management yang kemudian fungsionalnya akan kita expose dengan mengunakan rest technology.
 
 Untuk mempermudah development kita menggunakan database memory yaitu H2, dgn menggunkan H2 otomatis table akan di create pada saat server up
 ,namun table hanya ada apabila aplikasi hidup, dan akan di re-create saat aplikasi di restart.
@@ -71,25 +71,25 @@ public interface UserRepository extends JpaRepository<UserBean, Long>{
 	public List<UserBean> findUserCriteria(@Param("name") String name, @Param("email") String email);
 }
 ```
-Spring data memiliki fiture antara lain :
-a. Anotation @Repository
-b. findBy ....
-c  @Param untuk inject value pada query line, dengan tanda :
-d. Auto build in insert, update dan delete default
-e. Hql    : @Query(value="select a  from UserBean a", nativeQuery=false)
-f. Native : @Query(value="select a.* from gn_user a", nativeQuery=true)
-g. Gunakan @Modifying untuk delete dan update secara manual (bukan fungsi build in)
+Spring data memiliki fiture antara lain :</br>
+a. Anotation @Repository</br>
+b. findBy ....</br>
+c  @Param untuk inject value pada query line, dengan tanda :</br>
+d. Auto build in insert, update dan delete default</br>
+e. Hql    : @Query(value="select a  from UserBean a", nativeQuery=false)</br>
+f. Native : @Query(value="select a.* from gn_user a", nativeQuery=true)</br>
+g. Gunakan @Modifying untuk delete dan update secara manual (bukan fungsi build in)</br>
 
 6. Buat Class Service dan Service Implementation dan terapkan Transaction Propagation
 Terapkan @Service untuk menandakan ini merupakn service (@Service = Producer)
 Terapkan @Autowire untuk meng-inject object (@Autowire = Consumer)
 
-Beberapa Transactional Umum yang di support oleh Spring
-Propagation.SUPPORTS
-Propagation.REQUIRED
-Propagation.REQUIRES_NEW
-Propagation.NEVER
-Propagation.MANDATORY
+Beberapa Transactional Umum yang di support oleh Spring : </br>
+Propagation.SUPPORTS</br>
+Propagation.REQUIRED</br>
+Propagation.REQUIRES_NEW</br>
+Propagation.NEVER</br>
+Propagation.MANDATORY</br>
 
 7. Agar fungsi kita dapat di access dari luar, kita perlu membuat suatu framework Rest sebagai endpoint. 
 a. Buat Suatu Class dan pasang anotation @RestController. 
