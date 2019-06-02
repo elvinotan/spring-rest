@@ -102,27 +102,27 @@ b. POST : Untuk menyimpan data @PostMapping("/user")</br>
 c. DEL : Untuk menghapus data @DelMapping("/user/{id}")</br>
 d. PUT : Untuk mengubah data @PutMapping("/user")</br>
 
-Untuk mengirim data dari sisi client ke server, selain alamat url kita juga dapat memberikan :
-a. Path url => http://localhost:8080/user/45
-  http://localhost:8080/user/ = Url module
-  45 = User Id yang sifatnya dinamis(dapt di ganti ganti tergantung data yang di pilih)
-  Pada sisi server kita dapat menggunakan @PathVariable untuk mengambil data tersebut
+Untuk mengirim data dari sisi client ke server, selain alamat url kita juga dapat memberikan :</br>
+a. Path url => http://localhost:8080/user/45</br>
+  http://localhost:8080/user/ = Url module</br>
+  45 = User Id yang sifatnya dinamis(dapt di ganti ganti tergantung data yang di pilih)</br>
+  Pada sisi server kita dapat menggunakan @PathVariable untuk mengambil data tersebut</br>
   ```
   @GetMapping("/user/{id}")
   public Result getUser(@PathVariable("id") Long id) {
   ```
-b. Query url => http://localhost:880/user?name=Constantine&email=constantine@gmail.com
-   http://localhost:8080/user/ = Url module
-   ?name=btpn&email=constantine@gmail.com = Query
-   Pad sisi server kita dapat menggunakan @RequestParam("name") untuk mengambil data yang di kirim
+b. Query url => http://localhost:880/user?name=Constantine&email=constantine@gmail.com</br>
+   http://localhost:8080/user/ = Url module</br>
+   ?name=btpn&email=constantine@gmail.com = Query</br>
+   Pad sisi server kita dapat menggunakan @RequestParam("name") untuk mengambil data yang di kirim</br>
    ```
    @GetMapping("/users")
    public Result getUsers(@RequestParam("name") String name, @RequestParam("email") String email){
    ``` 	
-c. Body / Payload => http://localhost:8080/user dengan body {"name":"Constantine", "email":"constantine@gmail.com"}
-   http://localhost:8080/user/ = Url module
-   {"name":"Constantine", "email":"constantine@gmail.com"} => Body atau payload
-   Pad sisi server kita dapat menggunakan @RequestBody untuk mengambil data body yang di kirim    	
+c. Body / Payload => http://localhost:8080/user dengan body {"name":"Constantine", "email":"constantine@gmail.com"}</br>
+   http://localhost:8080/user/ = Url module</br>
+   {"name":"Constantine", "email":"constantine@gmail.com"} => Body atau payload</br>
+   Pad sisi server kita dapat menggunakan @RequestBody untuk mengambil data body yang di kirim</br>  	
    ```
    @PostMapping("/user")
    public Result saveUser(@RequestBody UserBean bean) {
