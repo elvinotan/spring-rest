@@ -19,6 +19,26 @@ Web</br>
 H2</br>
 
 # How to
+0. Konfigurasi
+```
+server.port=8080
+
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+#http://localhost:8080/h2-console 
+spring.h2.console.enabled=true
+
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+spring.jpa.hibernate.ddl-auto = update
+
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type=TRACE
+```
 1. Buat Spring Boot application dan tambahkan dependencies sesuai di atas.
 2. Buat package berdasarkan tujuan masing masing, contoh : model, repository, service, impl, controller
 3. Buat persistence model, pada kasus ini membuat 3 jenis model yaitu User, Role, Menu dan Relative
